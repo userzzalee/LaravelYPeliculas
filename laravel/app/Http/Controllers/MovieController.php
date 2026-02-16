@@ -87,4 +87,19 @@ class MovieController extends Controller
             ->with('success', 'Película eliminada correctamente');
     }
 
+    public function rate(Request $request, Movie $movie)
+    {
+        $request->validate([
+            'score' => 'required|integer|min:1|max:5',
+        ]);
+
+        $movie->ratings()->create([
+            'user_id' => auth()->id(),
+            'score' => $request->score,
+        ]);
+
+        return back()->with('success', 'Valoración guardada!');
+    }
+
+
 }

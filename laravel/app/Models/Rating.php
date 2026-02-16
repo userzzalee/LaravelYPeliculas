@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Rating extends Model
 {
     protected $fillable = [
@@ -12,11 +13,12 @@ class Rating extends Model
         'score',
     ];
 
-    public function movie(){   // Nota: content_id corresponde a la película
+    public function movie(){
         return $this->belongsTo(Movie::class, 'content_id');
     }
 
     public function user(){
         return $this->belongsTo(User::class);
     }
+
 }
